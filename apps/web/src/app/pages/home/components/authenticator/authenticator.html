@@ -1,0 +1,44 @@
+@let passkey = credential();
+
+<article class="passkey surface">
+	<span class="icon"
+		><mat-icon>{{ icon() }}</mat-icon></span
+	>
+
+	<div class="details">
+		<h3>{{ passkey.nickname }}</h3>
+		<p class="provider">{{ passkey.provider ?? 'Provider not reported' }}</p>
+
+		<ul class="chips">
+			<!-- BE and BS: whether losing this device loses the account -->
+			@if (passkey.deviceType === 'multiDevice') {
+				<li [class.ok]="passkey.backedUp">
+					{{ passkey.backedUp ? 'Synced' : 'Not backed up yet' }}
+				</li>
+			} @else {
+				<li>This device only</li>
+			}
+			@for (transport of passkey.transports; track transport) {
+				<li class="muted">{{ transport }}</li>
+			}
+		</ul>
+
+		<p class="meta">
+			Added {{ passkey.createdAt | date: 'mediumDate' }} ·
+			@if (passkey.lastUsedAt) {
+				last used {{ passkey.lastUsedAt | date: 'short' }}
+			} @else {
+				not used to sign in yet
+			}
+		</p>
+	</div>
+
+	<button
+		matIconButton
+		aria-label="Remove passkey"
+		[disabled]="!removable()"
+		(click)="remove.emit()"
+	>
+		<mat-icon>delete_outline</mat-icon>
+	</button>
+</article>

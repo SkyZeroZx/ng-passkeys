@@ -1,0 +1,19 @@
+@if (session.user(); as user) {
+	<app-auth-options [user]="user" />
+
+	<section class="passkeys">
+		<h2>Your passkeys</h2>
+		@for (credential of session.credentials(); track credential.id) {
+			<app-authenticator
+				[credential]="credential"
+				[removable]="session.credentials().length > 1"
+				(remove)="remove(credential)"
+			/>
+		}
+		<p class="hint">A second passkey on another device is your recovery plan.</p>
+	</section>
+} @else if (!session.loading()) {
+	<app-sign-in />
+}
+
+<app-json-viewer [value]="webAuthn.lastResponse()" />

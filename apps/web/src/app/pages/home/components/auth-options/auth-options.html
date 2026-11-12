@@ -1,0 +1,29 @@
+<section class="profile surface">
+	<div class="who">
+		<span class="avatar" aria-hidden="true">{{ initial() }}</span>
+		<div>
+			<h1>Hi, {{ user().displayName }}</h1>
+			@if (user().displayName !== user().username) {
+				<p class="username">{{ user().username }}</p>
+			}
+		</div>
+	</div>
+
+	@if (features().length) {
+		<ul class="features" aria-label="What this browser supports">
+			@for (feature of features(); track feature.label) {
+				<li [class.on]="feature.state === 'supported'">
+					<mat-icon>{{
+						feature.state === 'supported' ? 'check_circle' : 'remove_circle_outline'
+					}}</mat-icon>
+					{{ feature.label }}
+				</li>
+			}
+		</ul>
+	}
+
+	<button matButton="filled" [disabled]="busy()" (click)="addPasskey()">
+		<mat-icon>add</mat-icon>
+		Add a passkey
+	</button>
+</section>

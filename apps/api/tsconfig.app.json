@@ -1,0 +1,19 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"rootDir": "../..",
+		"outDir": "../../dist",
+		"types": ["node"],
+		"sourceMap": true,
+		"declaration": false,
+		"paths": {
+			"@ng-passkeys/shared": ["../../libs/shared/src/index.ts"]
+		}
+	},
+	"include": ["src/**/*.ts", "../../libs/shared/src/**/*.ts"],
+	"exclude": [],
+	"tsc-alias": {
+		"resolveFullPaths": true,
+		"verbose": false
+	}
+}

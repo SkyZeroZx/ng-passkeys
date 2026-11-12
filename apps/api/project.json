@@ -1,0 +1,45 @@
+{
+	"name": "api",
+	"$schema": "../../node_modules/nx/schemas/project-schema.json",
+	"projectType": "application",
+	"sourceRoot": "apps/api/src",
+	"tags": ["scope:api"],
+	"targets": {
+		"build": {
+			"executor": "nx:run-commands",
+			"outputs": ["{workspaceRoot}/dist/apps/api", "{workspaceRoot}/dist/libs"],
+			"options": {
+				"parallel": false,
+				"commands": ["tsc -p apps/api/tsconfig.app.json", "tsc-alias -p apps/api/tsconfig.app.json"]
+			}
+		},
+		"serve": {
+			"executor": "nx:run-commands",
+			"options": {
+				"parallel": true,
+				"commands": [
+					"tsc -p apps/api/tsconfig.app.json --watch --preserveWatchOutput",
+					"tsc-alias -p apps/api/tsconfig.app.json --watch",
+					"node --watch --watch-path=dist/apps/api dist/apps/api/src/main.js"
+				]
+			}
+		},
+		"typecheck": {
+			"executor": "nx:run-commands",
+			"options": {
+				"command": "tsc -p apps/api/tsconfig.app.json --noEmit"
+			}
+		},
+		"test": {
+			"executor": "nx:run-commands",
+			"options": {
+				"parallel": false,
+				"commands": [
+					"tsc -p apps/api/tsconfig.app.json",
+					"tsc-alias -p apps/api/tsconfig.app.json",
+					"node --test \"dist/apps/api/**/*.spec.js\""
+				]
+			}
+		}
+	}
+}

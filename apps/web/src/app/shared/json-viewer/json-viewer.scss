@@ -1,0 +1,19 @@
+.json-viewer {
+	padding: 0.875rem 1rem;
+	border: 1px solid var(--mat-sys-outline-variant);
+	border-radius: 1.25rem;
+	background: var(--mat-sys-surface);
+
+	summary {
+		cursor: pointer;
+		font-size: 0.875rem;
+		font-weight: 500;
+	}
+
+	pre {
+		margin: 0.75rem 0 0;
+		overflow-x: auto;
+		font-size: 0.6875rem;
+		line-height: 1.5;
+	}
+}

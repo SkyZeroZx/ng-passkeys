@@ -1,0 +1,44 @@
+<section class="sign-in surface">
+	<figure class="media">
+		<img src="capybara.gif" alt="A capybara walking past a trail camera" width="320" height="144" />
+		<figcaption>
+			Capybara by
+			<a href="https://www.inaturalist.org/photos/358045025" target="_blank" rel="noopener">
+				Guillermo Menéndez
+			</a>
+			· CC BY-NC 4.0
+		</figcaption>
+	</figure>
+
+	<h1>Sign in with a passkey</h1>
+	<p class="lead">Use your fingerprint, your face or your screen lock. There is no password.</p>
+
+	<mat-form-field appearance="outline" subscriptSizing="dynamic">
+		<mat-label>Username</mat-label>
+		<input
+			matInput
+			[formField]="signInForm.username"
+			autocomplete="username webauthn"
+			autocapitalize="none"
+			spellcheck="false"
+			(keyup.enter)="signIn()"
+		/>
+		<mat-icon matSuffix>person</mat-icon>
+		@if (signInForm.username().errors()[0]; as error) {
+			<mat-error>{{ error.message }}</mat-error>
+		}
+	</mat-form-field>
+
+	<div class="actions">
+		<button matButton="filled" [disabled]="busy()" (click)="signIn()">
+			<mat-icon>fingerprint</mat-icon>
+			Sign in
+		</button>
+		<button matButton="outlined" [disabled]="busy()" (click)="createAccount()">
+			<mat-icon>person_add</mat-icon>
+			Create account
+		</button>
+	</div>
+
+	<p class="hint">Leave the username empty to pick a passkey saved on this device.</p>
+</section>

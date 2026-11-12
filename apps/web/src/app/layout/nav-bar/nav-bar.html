@@ -1,0 +1,17 @@
+@if (session.loading()) {
+	<mat-progress-bar mode="indeterminate" />
+}
+
+<header class="nav-bar">
+	<span class="brand">
+		<img src="favicon.svg" alt="" width="28" height="28" />
+		Passkeys demo
+	</span>
+
+	@if (session.user()) {
+		<button matButton (click)="logout()">
+			<mat-icon>logout</mat-icon>
+			Sign out
+		</button>
+	}
+</header>

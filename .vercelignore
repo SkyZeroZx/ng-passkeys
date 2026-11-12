@@ -1,0 +1,13 @@
+# Local state that must not reach a CLI deploy. Vercel builds from source.
+.env
+.env.*
+!.env.example
+.data
+.angular
+.nx
+dist
+test-results
+playwright-report
+.agents
+.claude
+skills-lock.json

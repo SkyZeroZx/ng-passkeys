@@ -1,0 +1,27 @@
+node_modules
+dist
+tmp
+out-tsc
+coverage
+*.log
+.DS_Store
+
+# caches and local data
+.nx
+.angular
+.data
+
+# environment
+.env*
+!.env.example
+.vercel
+
+# tools
+.agents
+.claude
+skills-lock.json
+
+# playwright
+test-results
+playwright-report
+blob-report

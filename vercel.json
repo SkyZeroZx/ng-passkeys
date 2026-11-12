@@ -1,0 +1,19 @@
+{
+	"$schema": "https://openapi.vercel.sh/vercel.json",
+	"regions": [
+		"iad1"
+	],
+	"installCommand": "npm ci",
+	"buildCommand": "npx nx run-many -t build -p api web",
+	"outputDirectory": "dist/apps/web/browser",
+	"rewrites": [
+		{
+			"source": "/api/(.*)",
+			"destination": "/api"
+		},
+		{
+			"source": "/(.*)",
+			"destination": "/index.html"
+		}
+	]
+}
